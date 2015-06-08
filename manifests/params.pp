@@ -5,7 +5,8 @@ class authconfig::params () {
   $cache_packages     = ['nscd']
   $ldap_packages      = $::operatingsystemmajrelease ? {
     7       => ['openldap-clients', 'nss-pam-ldapd'],
-    default => ['openldap-clients', 'nss-pam-ldapd', 'pam_ldap']
+#    default => ['openldap-clients', 'nss-pam-ldapd', 'pam_ldap']
+    default => ['openldap-clients', 'pam_ldap']
   }
   $krb5_packages      = ['pam_krb5', 'krb5-workstation']
   $mkhomedir_packages = $::operatingsystemmajrelease ? {
@@ -16,6 +17,6 @@ class authconfig::params () {
   $nis_services       = ['ypbind']
   $services           = []
   $cache_services     = ['nscd']
-  $ldap_services      = ['nslcd']
+#  $ldap_services      = ['nslcd']
 
 }
