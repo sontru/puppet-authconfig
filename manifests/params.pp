@@ -4,7 +4,7 @@ class authconfig::params () {
   $packages           = ['authconfig']
   $cache_packages     = ['nscd']
   $ldap_packages      = $::operatingsystemmajrelease ? {
-    7       => ['openldap-clients', 'nss-pam-ldapd'],
+#    7       => ['openldap-clients', 'nss-pam-ldapd'],
 #    default => ['openldap-clients', 'nss-pam-ldapd', 'pam_ldap']
     default => ['openldap-clients', 'pam_ldap']
   }
