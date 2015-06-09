@@ -451,14 +451,14 @@ class authconfig (
       if $ldap {
         package { $authconfig::params::ldap_packages:
           ensure => installed,
-        } ->
-        service { $authconfig::params::ldap_services:
-          ensure     => running,
-          enable     => true,
-          hasstatus  => true,
-          hasrestart => true,
-          before     => Exec['authconfig command'],
-        }
+        } #->
+        #service { $authconfig::params::ldap_services:
+        #  ensure     => running,
+        #  enable     => true,
+        #  hasstatus  => true,
+        #  hasrestart => true,
+        #  before     => Exec['authconfig command'],
+        #}
       }
 
       if $mkhomedir {
