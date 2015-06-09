@@ -6,7 +6,8 @@ class authconfig::params () {
   $ldap_packages      = $::operatingsystemmajrelease ? {
 #    7       => ['openldap-clients', 'nss-pam-ldapd'],
 #    default => ['openldap-clients', 'nss-pam-ldapd', 'pam_ldap']
-    default => ['openldap-clients', 'pam_ldap']
+#    default => ['openldap-clients', 'pam_ldap']
+     default => ['openldap-clients']
   }
   $krb5_packages      = ['pam_krb5', 'krb5-workstation']
   $mkhomedir_packages = $::operatingsystemmajrelease ? {
