@@ -416,18 +416,7 @@ class authconfig (
         true    => "${krb_flg} ${krb5realm_val} ${krb_kdc} ${krb5kadmin_val} ${krb5kdcdns_flg} ${krb5realmdns_flg}",
         default => '',
       }
-      if $::operatingsystemmajrelease == 7 {
-        $krb5_flags2 = $krb5 ? {
-          true    => "${krb_flg} ${krb5realm_val} ${krb_kdc},${krb5kdc} ${krb5kadmin_val},${krb5kadmin} ${krb5kdcdns_flg} ${krb5realmdns_flg}",
-          default => '',
-        }
-      } else {
-        $krb5_flags2 = $krb5 ? {
-          true    => "${krb_flg} ${krb5realm_val} ${krb_kdc} ${krb5kadmin_val} ${krb5kdcdns_flg} ${krb5realmdns_flg}",
-          default => '',
-        }
-      }
-        
+
       $winbind_flags = $winbind ? {
         true    => "${winbind_flg} ${winbindauth_flg} ${smbsecurity_val} ${smbrealm_val} ${smbworkgroup_val} ${winbindjoin_val} ${smbservers_val}",
         default => '',
@@ -438,8 +427,7 @@ class authconfig (
       $pass_flags            = "${md5_flg} ${passalgo_val} ${shadow_flg}"
       $authconfig_flags      = "${ldap_flags} ${nis_flags} ${pass_flags} ${krb5_flags} ${winbind_flags} ${extra_flags} ${cache_flg} ${mkhomedir_flg} ${sssd_flg} ${sssdauth_flg} ${locauthorize_flg} ${sysnetauth_flg}"
       $authconfig_update_cmd = "authconfig ${authconfig_flags} --updateall"
-      $authconfig_test_flags = "${ldap_flags} ${nis_flags} ${pass_flags} ${krb5_flags_test} ${winbind_flags} ${extra_flags} ${cache_flg} ${mkhomedir_flg} ${sssd_flg} ${sssdauth_flg} ${locauthorize_flg} ${sysnetauth_flg}"
-      $authconfig_test_cmd   = "authconfig ${authconfig_test_flags} --test"
+      $authconfig_test_cmd   = "authconfig ${authconfig_flags} --test"
       $exec_check_cmd        = "/usr/bin/test \"`${authconfig_test_cmd}`\" = \"`authconfig --test`\""
 
       if $cache {
